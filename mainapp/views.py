@@ -2,6 +2,7 @@ from django.shortcuts import render
 import datetime
 from mainapp.models import ProductCategory, Product
 
+
 def index(request):
     context = {
         'title': 'главная',
@@ -10,7 +11,7 @@ def index(request):
     return render(request, 'mainapp/index.html', context)
 
 
-def products(request):
+def products(request, id=None):
     context = {
         'title': 'каталог',
         'products': Product.objects.all(),
