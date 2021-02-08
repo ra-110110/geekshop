@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
 from django.contrib import messages
+from basket.models import Basket
 
 from authapp.forms import UserLoginForm, UserRegisterForm, UserProfileForm
 
@@ -50,6 +51,6 @@ def profile(request):
         form = UserProfileForm(instance=request.user)
     context = {
         'form': form,
-
+        'baskets': Basket.objects.filter(user=request.user),
     }
     return render(request, 'authapp/profile.html', context)
