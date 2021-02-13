@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from authapp.models import User
-from adminapp.forms import UserAdminRegisterForm
+from adminapp.forms import UserAdminRegisterForm, UserAdminProfileForm
 
 
 def index(request):
@@ -25,3 +25,19 @@ def admin_users_create(request):
         form = UserAdminRegisterForm()
     context = {'form': form}
     return render(request, 'adminapp/admin-users-create.html', context)
+
+
+def admin_users_update(request, id=None):
+    user = User.objects.get(id=id)
+    if request.method == 'POST':
+        form = UserAdminProfileForm(data=request.POST, files=request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admins:admin_users_read'))
+    else:
+        form = UserAdminProfileForm(instance=user)
+    context = {
+        'form': form,
+        'current_user': user,
+    }
+    return render(request, 'adminapp/admin-users-update-delete.html', context)
