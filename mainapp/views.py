@@ -21,8 +21,10 @@ def index(request):
 #         products = Product.objects.filter(category_id=category_id)
 #     else:
 #         products = Product.objects.all()
+
 #     #вариант оптимизации:
 #     #products = Product.objects.filter(category_id=category_id) if category_id else Product.objects.all()
+
 #     context.update({'products': products})
 #     return render(request, 'mainapp/products.html', context)
 
