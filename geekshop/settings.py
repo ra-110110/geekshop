@@ -53,7 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'geekshop.urls'
-
+#jinjin2 - шаблонизатор
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'authapp.context_processors.user_status',
             ],
         },
     },
@@ -127,3 +128,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'authapp.User'
 
 LOGIN_URL = '/auth/login'
+
+DOMAIN_NAME = 'http://localhost:8000'
+
+EMAIL_HOST = 'localhost'  #порт с которого берутся письма
+EMAIL_PORT = '25'  #порт по умалчанию для отправки писем
+EMAIL_HOST_USER = 'django@geekshop.local'  #для авторизации на сервере
+EMAIL_HOST_PASSWORD = 'geekshop'     #пароль для авторизации
+
+EMAIL_USE_SSL = False     #защищенный доступ
+EMAIL_HOST_USER = None
+
+# вариант python -m smtpd -n -c DebuggingServer localhost:25
+# EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
+
+# вариант логирования сообщений почты в виде файлов вместо отправки
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/email-messages/'

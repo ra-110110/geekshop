@@ -4,8 +4,27 @@ from django.urls import reverse
 from django.contrib import messages
 from basket.models import Basket
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, Http404
+from authapp.models import User
 
 from authapp.forms import UserLoginForm, UserRegisterForm, UserProfileForm
+from .utils import send_verify_mail
+
+
+def verify(request, user_id, hash):
+    user = User.objects.get(pk=user_id)
+
+    if user.activation_key == hash and not user.is_activation_key_expired():
+        user.is_active = True
+        user.activation_key = None
+        user.save()
+        auth.login(request, user)
+        messages.success(request, 'Вы авторизованы, аккаунт активен!')
+        # return HttpResponseRedirect(reverse('index'))
+    return render(request, 'authapp/verification.html')
+    # raise Http404('')
+    # return HttpResponseRedirect(reverse('auth:login'))
+    # return HttpResponse(f'{user_id} {hash}')
 
 
 def login(request):
@@ -28,8 +47,9 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(data=request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Вы успешно зарегистрировались!')
+            user = form.save()
+            send_verify_mail(user)
+            messages.success(request, 'Проверьте почту для подтверждения регистрации!')
             return HttpResponseRedirect(reverse('auth:login'))
     else:
         form = UserRegisterForm()
