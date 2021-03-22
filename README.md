@@ -14,5 +14,8 @@ venv\Scripts\activate.bat
 test server
 python -m smtpd -n -c DebuggingServer localhost:25 (для линукса - sudo)
 
+запуск requirements
+pip install -r requirements.txt
+
 
 Django - 2.2.17
