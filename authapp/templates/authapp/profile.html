@@ -57,6 +57,17 @@
                             <label class="small mb-1" for="{{ form.birthday.id_for_label }}">День рождения</label>
                             {{ form.birthday }}
                         </div>
+                        <div class="col-lg-6">
+                            <label class="small mb-1" for="{{ form.age.id_for_label }}">Возраст</label>
+                            {{ form.age }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            {{ profile_form.as_p }}
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="col-lg-6" style="margin-top: 33px;">
                             <input class="btn btn-info btn-block" type="submit" value="Сохранить">
                         </div>

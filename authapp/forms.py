@@ -3,7 +3,7 @@ import random
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
-from authapp.models import User
+from authapp.models import User, ShopUserProfile
 from django import forms
 
 
@@ -41,7 +41,7 @@ class UserRegisterForm(UserCreationForm):
 
         user.is_active = False
         salt = hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:6]
-        user.activation_key = hashlib.sha1(str(user.email+salt).encode('utf-8')).hexdigest()
+        user.activation_key = hashlib.sha1(str(user.email + salt).encode('utf-8')).hexdigest()
         user.save()
         return user
 
@@ -51,13 +51,25 @@ class UserProfileForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'avatar', 'username', 'email', 'birthday')
+        fields = ('first_name', 'last_name', 'avatar', 'username', 'email', 'birthday', 'age')
 
     def __init__(self, *args, **kwargs):
-        super(UserProfileForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control py-4'
         self.fields['username'].widget.attrs['readonly'] = True
         self.fields['email'].widget.attrs['readonly'] = True
         self.fields['avatar'].widget.attrs['class'] = 'custom-file-input'
         self.fields['birthday'].widget.attrs['placeholder'] = '00.00.0000'
+        self.fields['age'].widget.attrs['placeholder'] = 'возраст'
+
+
+class ShopUserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('tagline', 'aboutMe', 'gender')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
