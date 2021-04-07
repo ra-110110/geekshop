@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+# from django.urls import re_path
 
 from mainapp.views import index
 
@@ -29,6 +30,7 @@ urlpatterns = [
     path('admin-staff/', include('adminapp.urls', namespace='admins')),
 
     path('', include('social_django.urls', namespace='social')),
+    path('order/', include('ordersapp.urls', namespace='order')),
 ]
 
 if settings.DEBUG:

@@ -17,6 +17,7 @@
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     {% block css %} {% endblock %}
+    {% block js %} {% endblock %}
 
 </head>
 
@@ -32,10 +33,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'products:index' %}>Каталог <i class="fas fa-shopping-bag"></i> </a>
+                    <a class="nav-link" href={% url 'products:index' %}>
+                        Каталог <i class="fas fa-shopping-bag"></i>
+                    </a>
                 </li>
-
                 {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ordersapp:orders_list' %}">
+                            Заказы <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'auth:profile' %}">{{ user.username }}
                             <i class="fas fa-user-circle"></i>
