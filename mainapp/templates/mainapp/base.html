@@ -40,7 +40,12 @@
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'ordersapp:orders_list' %}">
-                            Заказы <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            Заказы <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth:profile' %}">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ basket_count }}
                         </a>
                     </li>
                     <li class="nav-item">
