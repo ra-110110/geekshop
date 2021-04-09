@@ -7,7 +7,7 @@ body {
     padding-top: 56px;
 }
 
-.btn-index {
-    border-color: #007bff;
+.btn_a {
+    color: #007bff;
+    text-decoration: none;
 }
-

@@ -8,7 +8,6 @@
 {% block date %}
     <div class="container">
         <p>Сегодня {{ date }}</p>
-        {{ status }}
     </div>
 {% endblock %}
 
@@ -22,7 +21,7 @@
                         Новые образы и лучшие бренды на GeekShop Store.
                         Бесплатная доставка по всему миру! Аутлет: до -70% Собственный бренд. -20% новым покупателям.
                     </p>
-                    <button id="start-purchase-btn" type="button" class="btn btn-lg">
+                    <button id="start-purchase-btn" type="button" class="btn btn-lg btn-index">
                         <a id="start-purchase-link" href={% url 'products:index' %}>
                             Начать покупки
                         </a>
