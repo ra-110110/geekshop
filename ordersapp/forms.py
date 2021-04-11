@@ -3,7 +3,6 @@ from ordersapp.models import Order, OrderItem
 
 
 class OrderForm(forms.ModelForm):
-
     class Meta:
         model = Order
         exclude = ('user',)

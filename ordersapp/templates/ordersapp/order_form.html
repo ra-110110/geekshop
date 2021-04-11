@@ -1,5 +1,5 @@
 {% extends "ordersapp/order_base.html" %}
-{% load static %}
+{% load staticfiles %}
 
 {% block content %}
     <div class="container my-4">
@@ -31,24 +31,36 @@
                                         {% endfor %}
                                     {% endif %}
                                     {{ field.errors.as_ul }}
-                                    {% if field.name != 'price' %}
-                                        {{ field }}
+                                    {% if field.name == 'price' %}
+                                        <span class="orderitems-{{ forloop.parentloop.counter0 }}-price">
+                                        {{ field.value|default:"0,00" }}
+                                    </span> руб.
                                     {% else %}
-                                        {% if field.value %} рублей
-                                            <span class="orderitems-{{ forloop.parentloop.counter0 }}-price">
-                                        {{ field.value }}
-                                    </span> руб
-                                        {% endif %}
+                                        {{ field }}
                                     {% endif %}
                                 </td>
                             {% endfor %}
                         </tr>
                     {% endfor %}
                 </table>
-                <button type="submit" value="сохранить" class="btn btn-default btn-round form-control last btn_a">сохранить
-                </button>
-                {% include 'ordersapp/includes/inc_order_actions.html' %}
+                <div class="container-fluid">
+                    <div class="row mb-2 justify-content-center">
+                        <button type="submit" value="сохранить"
+                                class="btn btn-default btn-round form-control last btn_a col-lg-4 col-12">
+                            сохранить
+                        </button>
+                    </div>
+                    {% include 'ordersapp/includes/inc_order_actions.html' %}
+                </div>
             </form>
         </div>
     </div>
+    <script>
+        $('.formset_row').formset({
+            addText: 'добавить продукт',
+            deleteText: 'удалить',
+            prefix: 'orderitems',
+            removed: deleteOrderItem
+        });
+    </script>
 {% endblock %}

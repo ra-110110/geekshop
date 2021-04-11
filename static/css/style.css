@@ -1,5 +1,5 @@
 body {
-    background: url("../vendor/img/wallpaper.jpg") no-repeat center top fixed;
+    background: url("../vendor/img/bg.jpg") no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -10,4 +10,9 @@ body {
 .btn_a {
     color: #007bff;
     text-decoration: none;
+}
+
+.btn {
+    border-color: #495057;
+    background: white;
 }
