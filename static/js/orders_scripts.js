@@ -96,13 +96,9 @@ window.onload = function () {
 
     $orderForm.change(function (event) {
         let target = event.target;
-        console.log(target);
-    });
-
-    $orderForm.change(function (event) {
-        let target = event.target;
         orderitemNum = parseInt(target.name.replace('orderitems-', '').replace('-product', ''));
-        let orderitemProductpk = target.options[target.selectedIndex].value;
+        let orderitemProductpk = target.value
+        console.log(orderitemProductpk)
 
         if (orderitemProductpk) {
             $.ajax({
@@ -122,7 +118,7 @@ window.onload = function () {
                         }
                         orderSummaryRecalc();
                     }
-                    console.log('ajax done');
+                    // console.log('ajax done');
                 },
             });
         }
