@@ -15,7 +15,7 @@ pandas==1.0.3
 pefile==2019.4.18
 Pillow==7.1.1
 pip==21.0.1
-psutil==5.7.0
+psutil
 PyInstaller==3.6
 pyowm==2.10.0
 python-dateutil==2.8.1
@@ -27,5 +27,7 @@ six==1.15.0
 sqlparse==0.4.1
 urllib3==1.25.9
 virtualenv==20.0.20
-social-auth-app-django==3.4.0
+
 requests==2.25.1
+django-dynamic-formsets==0.0.8
+django-debug-toolbar==3.2

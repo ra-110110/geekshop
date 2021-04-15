@@ -18,7 +18,9 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
 
-
-
     def __str__(self):
         return f'{self.name}|{self.category.name}'
+
+    @staticmethod
+    def get_items():
+        return Product.objects.filter(is_active=True).order_by('category', 'name')

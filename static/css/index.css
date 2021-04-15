@@ -7,13 +7,7 @@ body {
     padding-top: 56px;
 }
 
-#start-purchase-btn {
-    background-color: #23364e;
-    border-color: #23364e;
-    color: white;
+.btn-index {
+    border-color: #007bff;
 }
 
-#start-purchase-link {
-    text-decoration: none;
-    color: white;
-}
